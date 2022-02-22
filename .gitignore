@@ -1,0 +1,6 @@
+*.txt
+*.o
+*main
+*.makefile.swp
+*main_func
+*table_create
