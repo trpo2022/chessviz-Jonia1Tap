@@ -4,3 +4,4 @@
 *.makefile.swp
 *main_func
 *table_create
+*.main_func.c.swp
