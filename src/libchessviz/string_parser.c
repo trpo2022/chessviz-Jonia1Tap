@@ -1,24 +1,24 @@
-#include <string.h>
 #include <ctype.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <libchessviz/string_parser.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-char *get_input()
+char* get_input()
 {
-    char *input_buffer = NULL;
+    char* input_buffer = NULL;
     size_t len;
     getline(&input_buffer, &len, stdin);
     return input_buffer;
 }
 
-void tolower_string(char *input)
+void tolower_string(char* input)
 {
     for (int i = 0; i < strlen(input); ++i)
         input[i] = tolower(input[i]);
 }
 
-ErrorType try_parse_input(Move *move, char *inp)
+ErrorType try_parse_input(Move* move, char* inp)
 {
     if (strlen(inp) != 6)
         return ErrorTypeIncorrectInput;

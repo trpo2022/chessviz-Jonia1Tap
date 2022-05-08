@@ -1,6 +1,6 @@
 #include <libchessviz/figure_move_validator.h>
 
-ErrorType try_check_y(char board[COLS][RAWS], Move *move)
+ErrorType try_check_y(char board[COLS][RAWS], Move* move)
 {
     int i, c1 = move->y1, c2 = move->y2;
     if (move->x1 != move->x2)
@@ -19,7 +19,7 @@ ErrorType try_check_y(char board[COLS][RAWS], Move *move)
     return ErrorTypeNone;
 }
 
-ErrorType try_check_x(char board[COLS][RAWS], Move *move)
+ErrorType try_check_x(char board[COLS][RAWS], Move* move)
 {
     int i, c1 = move->x1, c2 = move->x2;
 
@@ -39,7 +39,7 @@ ErrorType try_check_x(char board[COLS][RAWS], Move *move)
     return ErrorTypeNone;
 }
 
-ErrorType try_check_d(char board[COLS][RAWS], Move *move)
+ErrorType try_check_d(char board[COLS][RAWS], Move* move)
 {
     int i, j, c1 = move->y2, c2 = move->y1, ci, cj;
 
@@ -76,7 +76,7 @@ ErrorType try_check_d(char board[COLS][RAWS], Move *move)
     return ErrorTypeNone;
 }
 
-ErrorType is_correct_pawn_take(Move *move)
+ErrorType is_correct_pawn_take(Move* move)
 {
     int delta_x = move->x2 - move->x1;
     int delta_y = move->y2 - move->y1;
@@ -85,7 +85,7 @@ ErrorType is_correct_pawn_take(Move *move)
     return ErrorTypeWrongFigureMove;
 }
 
-ErrorType try_move_pawn_w(char board[COLS][RAWS], Move *move)
+ErrorType try_move_pawn_w(char board[COLS][RAWS], Move* move)
 {
     int delta_y = move->y1 - move->y2;
     if (move->type_move == MoveTypeTake)
@@ -97,7 +97,7 @@ ErrorType try_move_pawn_w(char board[COLS][RAWS], Move *move)
     return try_check_y(board, move);
 }
 
-ErrorType try_move_pawn_b(char board[COLS][RAWS], Move *move)
+ErrorType try_move_pawn_b(char board[COLS][RAWS], Move* move)
 {
     int delta_y = move->y2 - move->y1;
     if (move->type_move == MoveTypeTake)
@@ -109,7 +109,7 @@ ErrorType try_move_pawn_b(char board[COLS][RAWS], Move *move)
     return try_check_y(board, move);
 }
 
-ErrorType try_move_rock(char board[COLS][RAWS], Move *move)
+ErrorType try_move_rock(char board[COLS][RAWS], Move* move)
 {
     if (move->y1 == move->y2)
         return try_check_x(board, move);
@@ -118,7 +118,7 @@ ErrorType try_move_rock(char board[COLS][RAWS], Move *move)
     return ErrorTypeWrongFigureMove;
 }
 
-ErrorType try_move_knight(char board[COLS][RAWS], Move *move)
+ErrorType try_move_knight(char board[COLS][RAWS], Move* move)
 {
     if ((move->y1 - move->y2 == 2) && (move->x1 - move->x2 == 1))
         return ErrorTypeNone;
@@ -139,12 +139,12 @@ ErrorType try_move_knight(char board[COLS][RAWS], Move *move)
     return ErrorTypeWrongFigureMove;
 }
 
-ErrorType try_move_bishop(char board[COLS][RAWS], Move *move)
+ErrorType try_move_bishop(char board[COLS][RAWS], Move* move)
 {
     return try_check_d(board, move);
 }
 
-ErrorType try_move_king(char board[COLS][RAWS], Move *move)
+ErrorType try_move_king(char board[COLS][RAWS], Move* move)
 {
     int f_delta_y = move->y1 - move->y2;
     int s_delta_y = move->y2 - move->y1;
@@ -155,7 +155,7 @@ ErrorType try_move_king(char board[COLS][RAWS], Move *move)
     return ErrorTypeNone;
 }
 
-ErrorType try_move_queen(char board[COLS][RAWS], Move *move)
+ErrorType try_move_queen(char board[COLS][RAWS], Move* move)
 {
     if (move->y1 == move->y2)
         return try_check_x(board, move);

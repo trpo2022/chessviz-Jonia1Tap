@@ -1,8 +1,8 @@
+#include <libchessviz/figure_move_validator.h>
 #include <libchessviz/move_maker.h>
 #include <libchessviz/string_parser.h>
-#include <libchessviz/figure_move_validator.h>
 
-ErrorType try_make_move(char board[COLS][RAWS], Move *move, char *inp)
+ErrorType try_make_move(char board[COLS][RAWS], Move* move, char* inp)
 {
     ErrorType error = try_parse_input(move, inp);
     if (error != 0)
@@ -13,7 +13,7 @@ ErrorType try_make_move(char board[COLS][RAWS], Move *move, char *inp)
     return try_move(board, move);
 }
 
-ErrorType try_validate_move(char board[COLS][RAWS], Move *move)
+ErrorType try_validate_move(char board[COLS][RAWS], Move* move)
 {
     char type = move->type_move;
     char next_tile = board[move->y2][move->x2];
@@ -24,11 +24,11 @@ ErrorType try_validate_move(char board[COLS][RAWS], Move *move)
     return ErrorTypeNone;
 }
 
-ErrorType try_validate_figure(char board[COLS][RAWS], Move *move)
+ErrorType try_validate_figure(char board[COLS][RAWS], Move* move)
 {
     char prev_tile = board[move->y1][move->x1];
     char next_tile = board[move->y2][move->x2];
-    char *pattern = 0;
+    char* pattern = 0;
     if (move->color == MoveColorWhite)
         pattern = "AZaz";
     else
@@ -44,22 +44,13 @@ ErrorType try_validate_figure(char board[COLS][RAWS], Move *move)
     return ErrorTypeNone;
 }
 
-const static ErrorType (*move_validator[])(char board[COLS][RAWS], Move *move) = {
-    ['p'] = try_move_pawn_b,
-    ['r'] = try_move_rock,
-    ['n'] = try_move_knight,
-    ['b'] = try_move_bishop,
-    ['k'] = try_move_king,
-    ['q'] = try_move_queen,
-    ['P'] = try_move_pawn_w,
-    ['R'] = try_move_rock,
-    ['N'] = try_move_knight,
-    ['B'] = try_move_bishop,
-    ['K'] = try_move_king,
-    ['Q'] = try_move_queen,
+const static ErrorType (*move_validator[])(char board[COLS][RAWS], Move* move) = {
+    ['p'] = try_move_pawn_b, ['r'] = try_move_rock,   ['n'] = try_move_knight, ['b'] = try_move_bishop,
+    ['k'] = try_move_king,   ['q'] = try_move_queen,  ['P'] = try_move_pawn_w, ['R'] = try_move_rock,
+    ['N'] = try_move_knight, ['B'] = try_move_bishop, ['K'] = try_move_king,   ['Q'] = try_move_queen,
 };
 
-ErrorType try_move(char board[COLS][RAWS], Move *move)
+ErrorType try_move(char board[COLS][RAWS], Move* move)
 {
     return move_validator[(int)board[move->y1][move->x1]](board, move);
 }

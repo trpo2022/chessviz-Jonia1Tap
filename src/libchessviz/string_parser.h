@@ -2,11 +2,11 @@
 
 #include <libchessviz/move.h>
 
-ErrorType try_parse_input(Move *move, char *inp);
+ErrorType try_parse_input(Move* move, char* inp);
 
-char *get_input();
+char* get_input();
 
-void tolower_string(char *input);
+void tolower_string(char* input);
 
 static inline int is_valid_coords(char x, char y)
 {
