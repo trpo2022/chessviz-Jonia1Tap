@@ -1,7 +1,22 @@
-*.txt
+# Prerequisites
+*.d
+
+# Object files
 *.o
-*main
-*.makefile.swp
-*main_func
-*table_create
-*.main_func.c.swp
+*.ko
+*.obj
+*.elf
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Executables
+*.exe
+*.out
+*.app
+
+chessviz
+chessviz-test
